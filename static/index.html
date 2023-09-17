@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- tailwind cdn. not the best choice for production to use cdn -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- htmx script -->
+    <script src="https://unpkg.com/htmx.org@1.9.3" integrity="sha384-lVb3Rd/Ca0AxaoZg5sACe8FJKF0tnUgR2Kd7ehUOG5GCcROv5uBIZsOqovBAcWua" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/autosize.js/4.0.2/autosize.min.js"></script>
+
+    <title>Htmx + Tailwind Chat App</title>
+</head>
+<body class="h-full w-full p-0 m-0 bg-gray-800">
+    <div class="flex h-screen justify-center">
+
+      <div class="chat-box bg-gray-800 flex flex-col w-2/5 mb-10 mt-10">
+        <div class="messages flex-1 overflow-y-auto"></div>
+        <form 
+            class="flex items-center border-t border-gray-700 py-2 px-4"
+            hx-post="new_chat" 
+            hx-target=".messages"
+            hx-swap="beforeend">
+            
+            <textarea id="message-input" 
+                      class="flex-1 bg-gray-900 rounded-lg py-2 px-4 mr-2 text-white resize-none focus:outline-none overflow-hidden overflow-y-auto max-h-28" 
+                      placeholder="Type your message..."
+                      name="message"></textarea>
+      
+            <button class="bg-blue-500 hover:bg-blue-600 text-white rounded-lg py-2 px-4 focus:outline-none">Send</button>
+      </form>
+      </div>     
+    </div>
+    <script>
+      autosize(document.getElementById("message-input"));
+    </script>
+    
+  </body>  
+  
+</html>
